@@ -5,8 +5,8 @@ Amazon Redshift是一种快速的，完全托管的，PB级的数据仓库解决
 ##Labs
 | #   |      实验项目      |  实验简介 |
 |----------|:-------------:|------:|
-| 1 |  创建集群 | 群集设置和与SQL Workbench / J的连接 |
-| 2 |    数据导入   |   表创建，数据加载和表维护 |
-| 3 | 表设计和查询优化 |    设置分发和排序键，深层复制，explain计划，系统表查询 |
+| 1 |  [创建集群](https://github.com/nikosheng/Redshift-Workshop-CN/blob/master/create_cluster.md) | 群集设置和与SQL Workbench / J的连接 |
+| 2 |    [数据导入](https://github.com/nikosheng/Redshift-Workshop-CN/blob/master/data_loading.md)   |   表创建，数据加载和表维护 |
+| 3 | [表设计和查询优化](https://github.com/nikosheng/Redshift-Workshop-CN/blob/master/table_design_and_query_tunning.md) |    设置分发和排序键，深层复制，explain计划，系统表查询 |
 
 
