@@ -1,9 +1,9 @@
-#数据导入
+# 数据导入
 --
 
 在本实验中，您将基于TPC Benchmark数据模型使用一组八个表。您可以在Redshift集群中创建这些表，并使用存储在S3中的样本数据加载这些表。
 
-##创建表结构
+## 创建表结构
 复制以下创建表语句以在数据库中创建模拟TPC Benchmark数据模型的表。
 
 ```
@@ -107,7 +107,7 @@ diststyle even;
 
 ```
 
-##数据导入
+## 数据导入
 COPY命令比使用INSERT语句更有效地加载大量数据，并且也更有效地存储数据。使用单个COPY命令从多个文件中加载一个表的数据。然后，Amazon Redshift自动并行加载数据。为了方便起见，将在公共Amazon S3存储桶中提供您将使用的样本数据。为确保Redshift执行压缩分析，请在COPY命令中将COMPUPDATE参数设置为ON。要复制此数据，您将需要替换以下脚本中的`[Your-AWS_Account_Id]`和`[Your-Redshift_Role]`值。
 
 ```
@@ -159,7 +159,7 @@ region 'us-west-2' lzop delimiter '|' COMPUPDATE PRESET;
 
 COMPUPDATE PRESET ON将使用与列的数据类型相关的Amazon Redshift最佳实践分配压缩，但不分析表中的数据。`REGION`表的COPY指向特定文件（`region.tbl.lzo`），而其他表的COPY则指向多个文件的前缀（`lineitem.tbl`）。`SUPPLIER`表的COPY指向清单文件（`supplier.json`）
 
-##表维护 - Analyze
+## 表维护 - Analyze
 您应该定期更新查询计划者用来构建和选择最佳计划的统计元数据。您可以通过运行ANALYZE命令来显式分析表。使用COPY命令加载数据时，可以通过将STATUPDATE选项设置为ON来自动分析增量加载的数据。当加载到空表中时，默认情况下，COPY命令执行ANALYZE操作。
 
 
@@ -183,7 +183,7 @@ order by query desc;
 
 `注意`：`ANALYZE`的时间时间戳将与执行`COPY`命令的时间相关，并且第二条分析语句将没有任何条目。 `Redshift`知道它不需要运行`ANALYZE`操作，因为表中没有数据已更改。
 
-##表维护 - VACUUM
+## 表维护 - VACUUM
 您应该在进行大量删除或更新后运行`VACUUM`命令。为了执行更新，Amazon Redshift会删除原始行并追加更新后的行，因此每次更新实际上都是删除和插入。虽然Amazon Redshift最近启用了一项自动定期回收空间的功能，但是最好知道如何手动执行此操作。您可以运行完全真空，仅删除真空或仅对真空排序。
 
 
@@ -260,7 +260,7 @@ order by col;
 
 `注意`：如果您的表的列数很少，但行数却很大，则三个隐藏的元数据标识列（`INSERT_XID`，`DELETE_XID`，`ROW_ID`）将占用该表不成比例的磁盘空间。为了优化隐藏列的压缩，请尽可能在单个副本事务中加载表。如果使用多个单独的`COPY`命令加载该表，则`INSERT_XID`列将无法很好地压缩，并且多个真空操作将无法改善`INSERT_XID`的压缩。
 
-##调试
+## 调试
 有两个Amazon Redshift系统表可帮助您解决数据加载问题：
 
 - `STL_LOAD_ERRORS`

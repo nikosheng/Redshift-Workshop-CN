@@ -1,4 +1,4 @@
-#Redshift Immersion Lab
+# Redshift Immersion Lab
 --
 Amazon Redshift是一种快速的，完全托管的，PB级的数据仓库解决方案，它使用列式存储来最大程度地减少IO，提供高数据压缩率并提供快速性能。这次的实验提供了一系列练习，可帮助用户开始使用Redshift平台并且实现Redshift内置的的多种功能。
 
